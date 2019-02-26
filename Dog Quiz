@@ -1,0 +1,45 @@
+def dog_questions
+  answer_array = []
+  questions = {
+      'Activity Level' => '1.) Couch Potato 2.) Avid Runner 3.)Walk Nightly 4.) Walk 2x a week',
+      'Maintenance Level' =>  '1.) Okay with some hair 2.) Okay with some hair and some drool 3.) No shedding 4.) Okay with messy dogs',
+      'Cuteness' =>  '1.) Squishy Boi 2.) Goofy looking 3.) Handsome pup 4.) Chubby bum',
+      'Floof Level' => '1.) Short hairs 2.) Super short hairs 3.) Long curly fluffs 4.) Long soft fluffs'
+  }
+  questions.each do |question, answer|
+    answer_array << ask_question(question, answer)
+  end
+  answer_array
+end
+
+def ask_question(question, answers)
+  puts "What is your desired #{question.downcase}?"
+  puts answers
+  gets.chomp.to_i
+end
+
+
+def get_score(answer_array)
+  total = answer_array.inject(0.0) { |sum, number|  sum + number}
+  total / answer_array.count
+end
+
+
+def assign_result(score)
+  case score
+  when (1...1.5) then puts "You should get a French Bulldog"
+  when (1.5...2.5) then puts "You should get a Boxer"
+  when (2.5...3.2) then puts "You should get a Cocker Spaniel"
+  when (3.2...4) then puts "You should get a Newfie"
+  else puts "No dog for you."
+  end
+
+end
+
+def run_quiz
+  answer_array = dog_questions
+  score = get_score(answer_array)
+  assign_result(score)
+end
+
+run_quiz
