@@ -1,0 +1,42 @@
+def character_info
+  character = {
+    name: nil,
+    sex: nil,
+    age: nil,
+    race: nil,
+    class: nil,
+  }
+  character.each do |trait, value|
+    puts "What is your #{trait.to_s}?"
+    character[trait] = gets.chomp
+  end
+  return character
+end
+
+
+def display_party(party_array)
+  puts "Your party contains..."
+  party_array.each do |character|
+    character.each {|key, value| puts "#{key.capitalize}: #{value.capitalize}"}
+    puts "=========="
+  end
+end
+
+def add_member?
+  puts "Would you like to add a party member? (yes or no)"
+  answer = gets.chomp
+  return true if answer.downcase == 'yes'
+  false
+end
+
+
+def party_creation
+  party = []
+  while add_member?
+    character = character_info
+    party << character
+  end
+  display_party(party)
+end
+
+party_creation
