@@ -1,0 +1,41 @@
+character_info = {
+  name: nil,
+  sex: nil,
+  age: nil,
+
+}
+
+new_key = []
+new_value = []
+
+puts "Welcome to Character Creator. I'll need to ask you a few questions.
+ What would you like to name your character?"
+  character_info[:name] = gets.chomp
+
+puts "Very creative! Next, is #{character_info[:name]} male, female, or another gender?"
+  character_info[:sex] = gets.chomp
+
+puts "Great, and how old is #{character_info[:name]}?"
+  character_info[:age] = gets.chomp
+
+until new_key == 'no'
+  puts "Would you like to tell me anything else about #{character_info[:name]}? (Race, Class, Height, Weight, Strength, Weakness, Familiar, etc)"
+  new_key = gets.chomp
+  if new_key == "no"
+    puts "Perfect, Here is your character."
+    character_info.each {|key, value| puts "#{key.capitalize}: #{value.capitalize}."}
+    if character_info.length > 12
+      puts "You've made a very detailed character. Impressive work!"
+    elsif character_info.length > 8
+      puts "This looks like a well planned character."
+    elsif character_info.length > 5
+      puts "This character is ready to play."
+    elsif character_info.length > 3
+      puts "This looks like a basic character, next time add more details."
+    end
+  else
+  puts "Great, what #{new_key} would you like to add?"
+  new_value = gets.chomp
+   character_info[new_key] = new_value
+  end
+end
